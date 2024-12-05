@@ -10,7 +10,8 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = 
+NAME = get_next_line 
+#TEST#
 FLAG = -Wall -Wextra -Werror
 SRC = $(wildcard *.c)
 OBJ = $(SRC:.c=.o)

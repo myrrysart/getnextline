@@ -1,0 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: Jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/05 09:45:19 by Jyniemit          #+#    #+#             */
+/*   Updated: 2024/12/05 14:42:43 by Jyniemit         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef    GET_NEXT_LINE_H
+# define    GET_NEXT_LINE_H
+# define    READ_SIZE 5
+
+# ifndef    BUFFER_SIZE
+#  define    BUFFER_SIZE 10
+# endif
+
+# include <stdio.h> //test
+# include <fcntl.h> //test
+
+/* read() */
+# include <unistd.h>
+/* malloc() & free() */
+# include <stdlib.h>
+
+char	*get_next_line(int fd);
+#endif
