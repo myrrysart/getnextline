@@ -26,5 +26,11 @@
 /* malloc() & free() */
 # include <stdlib.h>
 
+typedef struct s_strholder
+{
+	char				*str;
+	struct s_strholder	*next;
+} t_strholder;
+
 char	*get_next_line(int fd);
 #endif
