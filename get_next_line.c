@@ -12,12 +12,23 @@
 
 #include "get_next_line.h"
 
+int	fill_node(char *buf)
+{
+	t_strholder	new;
+
+	new.str->buf;
+	new.next->NULL;
+}
+
 char	*get_next_line(int fd)
 {
 	char	*buf;
 
 	buf = malloc(BUFFER_SIZE + 1);
 	if (!buf)
+		return (NULL);
+	read(open(argv[1], O_RDONLY), buf, READ_SIZE);
+	if (fill_node(buf))
 		return (NULL);
 	return (buf);
 }
