@@ -12,4 +12,12 @@
 
 #include "get_next_line.h"
 
+int	node_nl_check(nodepointer *)
+{
 
+}
+
+int print(nodepointer *, size_t len)
+{
+
+}
