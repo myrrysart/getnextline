@@ -12,7 +12,7 @@
 
 NAME = get_next_line 
 #TEST#
-FLAG = -Wall -Wextra -Werror
+FLAG = -Wall -Wextra -Werror -g
 SRC = $(wildcard *.c)
 OBJ = $(SRC:.c=.o)
 HEADER = get_next_line.h
