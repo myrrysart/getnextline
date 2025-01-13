@@ -9,11 +9,10 @@
 #    Updated: 2024/12/05 07:44:31 by Jyniemit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-#TEST#
+
 NAME = get_next_line 
-#TEST#
-FLAG = -Wall -Wextra -Werror -g
-#TESTE#
+FLAG = -Wall -Wextra -Werror
+DFLAG = -g
 BUFFER = -D BUFFER_SIZE=10
 SRC = $(wildcard *.c)
 OBJ = $(SRC:.c=.o)
