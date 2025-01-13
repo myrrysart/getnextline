@@ -24,7 +24,19 @@ size_t	ft_strlen(char *s)
 
 char	*ft_strdup(char *buf, size_t len)
 {
-	return (NULL);
+	char	*res;
+	size_t	i;
+
+	i = 0;
+	res = malloc(sizeof(char) * len);
+	if (!res)
+		return (NULL);
+	while (i < len)
+	{
+		res[i] = buf[i];
+		i++;
+	}
+	return (res);
 }
 
 int	fill_node(char *buf)
