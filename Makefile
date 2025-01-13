@@ -20,6 +20,15 @@ HEADER = get_next_line.h
 
 all: $(NAME)
 
+$(NAME): $(OBJ) $(HEADER)
+	cc $(OBJ) -o $(NAME)
+
+%.o: %.c
+	cc $(FLAG) -c $< -I$(HEADER)
+
+debug: FLAG+=$(DFLAG)
+debug: all
+
 clean:
 	rm -f *.o
 
@@ -30,4 +39,3 @@ re: fclean
 	$(MAKE) all
 
 .PHONY: all clean fclean re
-	
