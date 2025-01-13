@@ -29,6 +29,7 @@
 typedef struct s_strholder
 {
 	char				*str;
+	struct s_strholder	*prev;
 	struct s_strholder	*next;
 } t_strholder;
 
