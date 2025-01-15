@@ -88,7 +88,31 @@ t_strholder	*fill_node(t_strholder *prev, char *buf)
 //		return (NULL);
 //	return (buf);
 //}
+char	*next_line_return(t_strholder *head)
+{
+	char	*s;
+	size_t	len;
+	size_t	nl_len;
 
+	len = 0;
+	nl_len = 0;
+	while (head->newl_exists == 0)
+	{
+		s = malloc(sizeof(char) * (ft_strlen(head->str) + len + 1));
+		if (!s)
+			return (NULL);
+		while (*head->str)
+			s[len++] = *(head->str++);
+		head = head->next;
+	}
+	while(head->str[nl_len] != '\n')
+		nl_len++;
+	s = malloc(sizeof(char) * (nl_len + len + 1));
+	s[len + nl_len] = '\0';
+	while (nl_len-- > 0)
+		s[len + nl_len] = head->str[nl_len];
+	return (s);
+}
 
 int	main(int argc, char **argv)
 {
