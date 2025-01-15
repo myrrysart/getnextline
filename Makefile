@@ -26,16 +26,18 @@ $(NAME): $(OBJ) $(HEADER)
 %.o: %.c $(HEADER)
 	cc $(FLAG) -c $< -o $@
 
-debug: FLAG+=$(DFLAG)
+debug: FLAG+=$(DFLAG) 
 debug: all
+	touch .debug
 
 clean:
 	rm -f *.o
 
 fclean: clean
+	rm -f .debug
 	rm -f $(NAME)
 
 re: fclean
 	$(MAKE) all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re debug %.o
