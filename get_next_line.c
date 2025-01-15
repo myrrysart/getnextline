@@ -56,6 +56,24 @@ int newl_check(char *str)
 	new.str = ft_strdup(buf, ft_strlen(buf) + 1);
 	new.next = NULL;
 	return (0);
+t_strholder	*fill_node(t_strholder *prev, char *buf)
+{
+	t_strholder	*new;
+
+	if (!prev)
+	{
+		prev = malloc(sizeof(t_strholder));
+		if (!prev)
+			return (NULL);
+	}
+	new = malloc(sizeof(t_strholder));
+	if (!new)
+		return (NULL);
+	prev->next = new;
+	new->str = ft_strdup(buf, ft_strlen(buf) + 1);
+	new->next = NULL;
+	new->newl_exists = newl_check(new->str);
+	return (new);
 }
 
 //char	*get_next_line(int fd)
