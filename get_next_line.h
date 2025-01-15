@@ -31,10 +31,11 @@
 
 typedef struct s_strholder
 {
+	char				newl_exists : 1;
+	char				other_flags : 7;
 	char				*str;
-	struct s_strholder	*prev;
 	struct s_strholder	*next;
-} t_strholder;
+}	t_strholder;
 
 char	*get_next_line(int fd);
 #endif
