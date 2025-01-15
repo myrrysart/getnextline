@@ -14,7 +14,7 @@ NAME = get_next_line
 FLAG = -Wall -Wextra -Werror
 DFLAG = -g
 BUFFER = -D BUFFER_SIZE=10
-SRC = $(wildcard *.c)
+SRC = get_next_line.c get_next_line_utils.c
 OBJ = $(SRC:.c=.o)
 HEADER = get_next_line.h
 
@@ -23,8 +23,8 @@ all: $(NAME)
 $(NAME): $(OBJ) $(HEADER)
 	cc $(OBJ) -o $(NAME)
 
-%.o: %.c
-	cc $(FLAG) -c $< -I$(HEADER)
+%.o: %.c $(HEADER)
+	cc $(FLAG) -c $< -o $@
 
 debug: FLAG+=$(DFLAG)
 debug: all
