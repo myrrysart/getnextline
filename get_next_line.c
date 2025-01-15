@@ -39,10 +39,8 @@ char	*ft_strdup(char *buf, size_t len)
 	return (res);
 }
 
-int	fill_node(char *buf)
 int newl_check(char *str)
 {
-	t_strholder	new;
 	int	newl_found = 0;
 	while (*str && !newl_found)
 	{
@@ -53,9 +51,6 @@ int newl_check(char *str)
 	return (newl_found);
 }
 
-	new.str = ft_strdup(buf, ft_strlen(buf) + 1);
-	new.next = NULL;
-	return (0);
 t_strholder	*fill_node(t_strholder *prev, char *buf)
 {
 	t_strholder	*new;
@@ -76,18 +71,6 @@ t_strholder	*fill_node(t_strholder *prev, char *buf)
 	return (new);
 }
 
-//char	*get_next_line(int fd)
-//{
-//	char	*buf;
-//
-//	buf = malloc(BUFFER_SIZE + 1);
-//	if (!buf)
-//		return (NULL);
-//	read(open(argv[1], O_RDONLY), buf, READ_SIZE);
-//	if (fill_node(buf))
-//		return (NULL);
-//	return (buf);
-//}
 char	*next_line_return(t_strholder *head)
 {
 	char	*s;
@@ -114,19 +97,34 @@ char	*next_line_return(t_strholder *head)
 	return (s);
 }
 
+char	*get_next_line(int fd)
+{
+	char		*buf;
+	t_strholder	*head;
+	t_strholder *tail;
+
+	head = NULL;
+	buf = malloc(BUFFER_SIZE + 1);
+	if (!buf)
+		return (NULL);
+	read(fd, buf, READ_SIZE);
+	head = malloc(sizeof(t_strholder));
+	if (!head)
+		return (NULL);
+	head->str = ft_strdup(buf, ft_strlen(buf));
+	tail = fill_node(head, buf);
+	while (!tail->newl_exists)
+		tail = fill_node(tail, buf);
+	return (next_line_return(head));
+}
+
+
 int	main(int argc, char **argv)
 {
-	char	*buf;
-
 	if (argc != 2)
 		return (1);
 	if (read(open(argv[1], O_RDONLY), 0, 0))
 		return (1);
-	buf = malloc(BUFFER_SIZE + 1);
-	if (!buf)
-		return (1);
-	read(open(argv[1], O_RDONLY), buf, READ_SIZE);
-	printf("-------- |%s| --------", buf);
-	free(buf);
+	printf("The result -> | %s | \n", get_next_line(open(argv[1], O_RDONLY)));
 	return (0);
 }
