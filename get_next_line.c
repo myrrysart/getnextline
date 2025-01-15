@@ -40,8 +40,18 @@ char	*ft_strdup(char *buf, size_t len)
 }
 
 int	fill_node(char *buf)
+int newl_check(char *str)
 {
 	t_strholder	new;
+	int	newl_found = 0;
+	while (*str && !newl_found)
+	{
+		if (*str == '\n')
+			newl_found = 1;
+		str++;
+	}
+	return (newl_found);
+}
 
 	new.str = ft_strdup(buf, ft_strlen(buf) + 1);
 	new.next = NULL;
