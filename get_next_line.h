@@ -21,7 +21,8 @@
 # include <unistd.h>
 //malloc
 # include <stdlib.h>
-
+//typedefs for [u]int##_t and MAX/MIN values
+# include <stdint.h>
 char	*get_next_line(int fd);
 
 #endif
