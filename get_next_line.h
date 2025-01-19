@@ -15,6 +15,8 @@
 # ifndef    BUFFER_SIZE
 # define    BUFFER_SIZE 100
 # endif
+# define    NL_FLAG (1 << 0)
+# define    EOF_FLAG (1 << 1)
 //read & close
 # include <unistd.h>
 //malloc
