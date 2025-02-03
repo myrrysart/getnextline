@@ -47,6 +47,7 @@ uint8_t	read_into_buffer(int fd, uint8_t *buf)
 	size_t	i;
 
 	i = 0;
+	(void)i;
 	if (read(fd, buf, BUFFER_SIZE) == -1)
 		return (1);
 	return (0);
