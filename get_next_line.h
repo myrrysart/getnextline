@@ -5,32 +5,24 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: Jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/05 09:45:19 by Jyniemit          #+#    #+#             */
-/*   Updated: 2024/12/05 14:42:43 by Jyniemit         ###   ########.fr       */
+/*   Created: 2025/01/16 08:18:54 by Jyniemit          #+#    #+#             */
+/*   Updated: 2025/01/16 08:22:19 by Jyniemit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef    GET_NEXT_LINE_H
 # define    GET_NEXT_LINE_H
-# define    READ_SIZE 5
-
 # ifndef    BUFFER_SIZE
-#  define    BUFFER_SIZE 10
+# define    BUFFER_SIZE 100
 # endif
-
-# include <stdio.h> //test
-# include <fcntl.h> //test
-
-/* read() */
+# define    NL_FLAG (1 << 0)
+# define    EOF_FLAG (1 << 1)
+//read & close
 # include <unistd.h>
-/* malloc() & free() */
+//malloc
 # include <stdlib.h>
-
-typedef struct s_strholder
-{
-	char				*str;
-	struct s_strholder	*next;
-} t_strholder;
-
+//typedefs for [u]int##_t and MAX/MIN values
+# include <stdint.h>
 char	*get_next_line(int fd);
+
 #endif

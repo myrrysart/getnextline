@@ -1,3 +1,9 @@
 get_next_line
 test
 a.out
+.debug
+get_next_line.o
+get_next_line_utils.o
+main.c
+testGNL
+notes
