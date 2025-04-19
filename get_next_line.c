@@ -6,7 +6,7 @@
 /*   By: Jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 05:50:50 by Jyniemit          #+#    #+#             */
-/*   Updated: 2025/01/16 08:42:42 by Jyniemit         ###   ########.fr       */
+/*   Updated: 2025/04/19 17:53:38 by jyniemit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ uint8_t	read_into_buffer(int fd, uint8_t *buf)
 
 	i = 0;
 	(void)i;
+	buf = malloc()
 	if (read(fd, buf, BUFFER_SIZE) == -1)
 		return (1);
 	return (0);

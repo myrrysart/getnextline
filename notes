@@ -1,0 +1,36 @@
+read(fd, buf, 0); ← ei sallittu
+pitää error handling saada muuten tehtyä. → -1 return
+
+typedef struct s_test
+{
+	int i;
+	char c;
+	int	status;
+} t_test;
+
+
+static t_test	strukti[1]; → static allokoi kaikki {0}. [1] tekee "strukti"sta pointterin → strukti->status syntaksi heti käytössä.
+
+casesL
+1:
+buf empty still need to read
+[......]
+[...\n...]
+[.....\n\n...\n....]
+[...\nEOF]
+[\nEOF]
+[EOF]
+
+return pitää olla käypä free() funktioon
+
+func(NULL)
+func( int *i)
+{
+	i = malloc(500 * sizeof(i))
+} → jos on ahtaita funktioita, ei tarvitse
+
+{
+	int *i;
+
+	i = NULL;
+}
