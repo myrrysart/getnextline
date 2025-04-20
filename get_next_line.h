@@ -3,34 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/05 09:45:19 by Jyniemit          #+#    #+#             */
-/*   Updated: 2024/12/05 14:42:43 by Jyniemit         ###   ########.fr       */
+/*   Created: 2025/04/20 14:53:53 by jyniemit          #+#    #+#             */
+/*   Updated: 2025/04/20 14:58:21 by jyniemit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef    GET_NEXT_LINE_H
-# define    GET_NEXT_LINE_H
-# define    READ_SIZE 5
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-# ifndef    BUFFER_SIZE
-#  define    BUFFER_SIZE 10
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 128
 # endif
 
-# include <stdio.h> //test
-# include <fcntl.h> //test
-
-/* read() */
-# include <unistd.h>
-/* malloc() & free() */
 # include <stdlib.h>
-
-typedef struct s_strholder
-{
-	char				*str;
-	struct s_strholder	*next;
-} t_strholder;
+# include <unistd.h>
+# include <fcntl.h>
+# include <string.h>
 
 char	*get_next_line(int fd);
+char	*extract_line(char **remains);
+char	*ft_strdup(const char *s);
+char	*ft_strchr(const char *s, int c);
+char	*ft_strjoin(char *s1, char *s2);
+
 #endif
