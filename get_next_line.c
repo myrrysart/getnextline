@@ -60,3 +60,20 @@ char *get_next_line(int fd)
 	safe_free((void *)&buffer);
 	return (line);
 }
+
+void	buffer_flushing(uint8_t *buf, size_t cut_index)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = cut_index + 1;
+	while (buf[j] != '\0')
+	{
+		buf[i] = buf[j];
+		i++;
+		j++;
+	}
+	while (buf[i] != '\0')
+		buf[i++] = '\0';
+}

@@ -1,0 +1,7 @@
+Hello World
+This line ends with a newline
+
+This line is after an empty line
+This is a very long long long long long long long line that exceeds most buffer sizes that might come at the start of the creation of this project, because this goes on and on for a while, I do not actually know how many characters this is actually, but it is a very long array of characters to go trough and make sure that the logic is working correctly for buffer control.
+Short.
+This is a final line without a newline at the end

@@ -5,3 +5,6 @@ a.out
 get_next_line.o
 get_next_line_utils.o
 test.txt
+main.c
+testGNL
+notes

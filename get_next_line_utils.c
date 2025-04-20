@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-// Helper function to extract part of string with specified length
 
 static char *ft_substr(char const *s, unsigned int start, size_t len)
 {
@@ -126,10 +125,7 @@ char *extract_line(char **remains)
     newline_pos = ft_strchr(*remains, '\n');
     if (newline_pos)
     {
-        // Extract up to and INCLUDING the newline
         line = ft_substr(*remains, 0, newline_pos - *remains + 1);
-        
-        // Save what's left for next call
         temp = ft_strdup(newline_pos + 1);
         free(*remains);
         *remains = temp;
