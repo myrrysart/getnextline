@@ -6,7 +6,7 @@
 /*   By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 14:53:53 by jyniemit          #+#    #+#             */
-/*   Updated: 2025/04/20 14:58:21 by jyniemit         ###   ########.fr       */
+/*   Updated: 2025/04/21 15:29:25 by jyniemit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@
 #  define BUFFER_SIZE 128
 # endif
 
-# include <stdlib.h>
-# include <unistd.h>
 # include <fcntl.h>
+# include <stdlib.h>
 # include <string.h>
+# include <unistd.h>
 
 char	*get_next_line(int fd);
-char	*extract_line(char **remains);
 char	*ft_strdup(const char *s);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strjoin(char *s1, char *s2);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 #endif

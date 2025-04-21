@@ -6,37 +6,31 @@
 /*   By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 14:55:35 by jyniemit          #+#    #+#             */
-/*   Updated: 2025/04/20 18:22:54 by jyniemit         ###   ########.fr       */
+/*   Updated: 2025/04/21 16:15:41 by jyniemit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-// Helper function to extract part of string with specified length
 
-static char *ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-    char *substr;
-    size_t i;
-    
-    if (!s)
-        return (NULL);
-        
-    substr = malloc(len + 1);
-    if (!substr)
-        return (NULL);
-        
-    i = 0;
-    while (i < len && s[start + i])
-    {
-        substr[i] = s[start + i];
-        i++;
-    }
-    substr[i] = '\0';
-    
-    return (substr);
+	char	*substr;
+	size_t	i;
+
+	if (!s)
+		return (NULL);
+	substr = malloc(len + 1);
+	if (!substr)
+		return (NULL);
+	i = 0;
+	while (i < len && s[start + i])
+	{
+		substr[i] = s[start + i];
+		i++;
+	}
+	substr[i] = '\0';
+	return (substr);
 }
-
-
 
 char	*ft_strdup(const char *s)
 {
@@ -76,6 +70,19 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
+static size_t	str_fill(char *dest, char *src, size_t start_i)
+{
+	size_t	i;
+
+	i = 0;
+	while (src[i])
+	{
+		dest[start_i + i] = src[i];
+		i++;
+	}
+	return (i);
+}
+
 char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*joined;
@@ -94,52 +101,10 @@ char	*ft_strjoin(char *s1, char *s2)
 	if (!joined)
 		return (NULL);
 	i = 0;
-	while (s1[i])
-	{
-		joined[i] = s1[i];
-		i++;
-	}
+	i = str_fill(joined, s1, i);
 	j = 0;
-	while (s2[j])
-	{
-		joined[i + j] = s2[j];
-		j++;
-	}
+	j = str_fill(joined, s2, i);
 	joined[i + j] = '\0';
 	free(s1);
 	return (joined);
-}
-
-char *extract_line(char **remains)
-{
-    char *line;
-    char *newline_pos;
-    char *temp;
-    
-    if (!*remains || !**remains)
-    {
-        free(*remains);
-        *remains = NULL;
-        return (NULL);
-    }
-    
-    newline_pos = ft_strchr(*remains, '\n');
-    if (newline_pos)
-    {
-        // Extract up to and INCLUDING the newline
-        line = ft_substr(*remains, 0, newline_pos - *remains + 1);
-        
-        // Save what's left for next call
-        temp = ft_strdup(newline_pos + 1);
-        free(*remains);
-        *remains = temp;
-    }
-    else
-    {
-        line = ft_strdup(*remains);
-        free(*remains);
-        *remains = NULL;
-    }
-    
-    return (line);
 }
