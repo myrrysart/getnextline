@@ -6,7 +6,7 @@
 /*   By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 14:53:53 by jyniemit          #+#    #+#             */
-/*   Updated: 2025/04/21 15:29:25 by jyniemit         ###   ########.fr       */
+/*   Updated: 2025/04/22 15:03:45 by jyniemit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 128
+#  define BUFFER_SIZE 42
 # endif
 
 # include <fcntl.h>
