@@ -6,7 +6,7 @@
 /*   By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 14:40:00 by jyniemit          #+#    #+#             */
-/*   Updated: 2025/04/21 18:21:30 by jyniemit         ###   ########.fr       */
+/*   Updated: 2025/04/22 14:35:45 by jyniemit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static void	safe_free(void **ptr)
 {
+	if (!*ptr || !ptr)
+		return ;
 	free(*ptr);
 	*ptr = NULL;
 }
