@@ -26,7 +26,10 @@ static int	process_newline(char **remains, char **line, char *newline_pos)
 
 	*line = ft_substr(*remains, 0, newline_pos - *remains + 1);
 	if (!*line)
+	{
+		safe_free((void *)remains);
 		return (0);
+	}
 	if (*(newline_pos + 1))
 	{
 		temp = ft_strdup(newline_pos + 1);
