@@ -67,7 +67,6 @@ static int	read_to_remains(char **remains, int fd)
 	int		bytes_read;
 	int		continue_reading;
 	char	*buffer;
-	char	*temp;
 
 	buffer = malloc(BUFFER_SIZE + 1);
 	if (!buffer)
@@ -77,14 +76,16 @@ static int	read_to_remains(char **remains, int fd)
 	while (bytes_read > 0 && continue_reading)
 	{
 		buffer[bytes_read] = '\0';
-		temp = ft_strjoin(*remains, buffer);
-		if (!temp)
+		*remains = concat_buffer_to_remains(*remains, buffer);
+		if (!*remains)
+		{
+			safe_free((void *)&buffer);
 			return (-1);
-		if (ft_strchr(temp, '\n'))
+		}
+		if (ft_strchr(*remains, '\n'))
 			continue_reading = 0;
 		else
 			bytes_read = read(fd, buffer, BUFFER_SIZE);
-		*remains = temp;
 	}
 	safe_free((void *)&buffer);
 	return (bytes_read);
