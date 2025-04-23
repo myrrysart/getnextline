@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 14:40:00 by jyniemit          #+#    #+#             */
-/*   Updated: 2025/04/22 21:38:04 by jyniemit         ###   ########.fr       */
+/*   Updated: 2025/04/23 11:54:08 by jyniemit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static void	safe_free(void **ptr)
 {
@@ -47,24 +47,16 @@ static char	*extract_line(char **remains)
 	return (line);
 }
 
-static int	gnl_safety_check(char **remains, char *buffer, int fd)
-{
-	if (fd < 0 || BUFFER_SIZE <= 0)
-	{
-		if (*remains)
-			safe_free((void *)remains);
-		safe_free((void *)&buffer);
-		return (-1);
-	}
-	return (0);
-}
-
-static int	read_to_remains(char **remains, char *buffer, int fd)
+static int	read_to_remains(char **remains, int fd)
 {
 	int		bytes_read;
 	char	*temp;
 	int		continue_reading;
+	char	*buffer;
 
+	buffer = malloc(BUFFER_SIZE + 1);
+	if (!buffer)
+		return (-1);
 	bytes_read = read(fd, buffer, BUFFER_SIZE);
 	continue_reading = 1;
 	while (bytes_read > 0 && continue_reading)
@@ -79,33 +71,24 @@ static int	read_to_remains(char **remains, char *buffer, int fd)
 		else
 			bytes_read = read(fd, buffer, BUFFER_SIZE);
 	}
+	safe_free((void *)&buffer);
 	return (bytes_read);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*remains = NULL;
-	char		*buffer;
+	static char	*remains;
 	char		*line;
 	int			bytes_read;
 
 	bytes_read = 0;
-	buffer = malloc(BUFFER_SIZE + 1);
-	if (!buffer)
-		return (NULL);
-	if (gnl_safety_check(&remains, buffer, fd) == -1)
-		return (NULL);
 	if (!remains)
 		remains = ft_strdup("");
-	bytes_read = read_to_remains(&remains, buffer, fd);
+	bytes_read = read_to_remains(&remains, fd);
 	if (bytes_read < 0)
 		safe_free((void *)&remains);
 	line = extract_line(&remains);
 	if (!line && !remains)
-	{
-		safe_free((void *)&buffer);
 		return (NULL);
-	}
-	safe_free((void *)&buffer);
 	return (line);
 }
