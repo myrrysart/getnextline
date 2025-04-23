@@ -35,6 +35,7 @@ static int	process_newline(char **remains, char **line, char *newline_pos)
 		temp = ft_strdup(newline_pos + 1);
 		if (!temp)
 		{
+			safe_free((void *)remains);
 			safe_free((void *)line);
 			return (0);
 		}
