@@ -99,11 +99,18 @@ char	*get_next_line(int fd)
 
 	if (BUFFER_SIZE <= 0 || fd < 0)
 		return (NULL);
+	if (remains && ft_strchr(remains, '\n'))
+		return (extract_line(&remains));
 	bytes_read = read_to_remains(&remains, fd);
 	if (bytes_read < 0)
+	{
 		safe_free((void *)&remains);
-	line = extract_line(&remains);
-	if (!line && !remains)
 		return (NULL);
-	return (line);
+	}
+	if (remains && *remains)
+	{
+		line = extract_line(&remains);
+		return (line);
+	}
+	return (NULL);
 }
