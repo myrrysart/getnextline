@@ -6,7 +6,7 @@
 /*   By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 14:40:00 by jyniemit          #+#    #+#             */
-/*   Updated: 2025/04/23 17:30:46 by jyniemit         ###   ########.fr       */
+/*   Updated: 2025/04/23 19:49:01 by jyniemit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,16 @@ static int	process_newline(char **remains, char **line, char *newline_pos)
 
 	*line = ft_substr(*remains, 0, newline_pos - *remains + 1);
 	if (!*line)
+	{
+		safe_free((void *)remains);
 		return (0);
+	}
 	if (*(newline_pos + 1))
 	{
 		temp = ft_strdup(newline_pos + 1);
 		if (!temp)
 		{
+			safe_free((void *)remains);
 			safe_free((void *)line);
 			return (0);
 		}
