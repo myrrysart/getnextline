@@ -97,7 +97,8 @@ char	*get_next_line(int fd)
 	char		*line;
 	int			bytes_read;
 
-	bytes_read = 0;
+	if (BUFFER_SIZE <= 0 || fd < 0)
+		return (NULL);
 	bytes_read = read_to_remains(&remains, fd);
 	if (bytes_read < 0)
 		safe_free((void *)&remains);
