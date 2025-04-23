@@ -6,7 +6,7 @@
 /*   By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 14:40:00 by jyniemit          #+#    #+#             */
-/*   Updated: 2025/04/22 21:38:04 by jyniemit         ###   ########.fr       */
+/*   Updated: 2025/04/23 12:27:34 by jyniemit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,6 @@ static char	*extract_line(char **remains)
 	return (line);
 }
 
-static int	gnl_safety_check(char **remains, char *buffer, int fd)
-{
-	if (fd < 0 || BUFFER_SIZE <= 0)
-	{
-		if (*remains)
-			safe_free((void *)remains);
-		safe_free((void *)&buffer);
-		return (-1);
-	}
-	return (0);
-}
-
 static int	read_to_remains(char **remains, char *buffer, int fd)
 {
 	int		bytes_read;
@@ -92,8 +80,6 @@ char	*get_next_line(int fd)
 	bytes_read = 0;
 	buffer = malloc(BUFFER_SIZE + 1);
 	if (!buffer)
-		return (NULL);
-	if (gnl_safety_check(&remains, buffer, fd) == -1)
 		return (NULL);
 	if (!remains)
 		remains = ft_strdup("");
