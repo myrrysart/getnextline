@@ -47,51 +47,46 @@ static char	*extract_line(char **remains)
 	return (line);
 }
 
-static int	read_to_remains(char **remains, char *buffer, int fd)
+static int	read_to_remains(char **remains, int fd)
 {
 	int		bytes_read;
-	char	*temp;
 	int		continue_reading;
+	char	*buffer;
 
+	buffer = malloc(BUFFER_SIZE + 1);
+	if (!buffer)
+		return (-1);
 	bytes_read = read(fd, buffer, BUFFER_SIZE);
 	continue_reading = 1;
 	while (bytes_read > 0 && continue_reading)
 	{
 		buffer[bytes_read] = '\0';
-		temp = ft_strjoin(*remains, buffer);
-		if (!temp)
+		*remains = ft_strjoin(*remains, buffer);
+		if (!*remains)
 			return (-1);
-		*remains = temp;
 		if (ft_strchr(*remains, '\n'))
 			continue_reading = 0;
 		else
 			bytes_read = read(fd, buffer, BUFFER_SIZE);
 	}
+	safe_free((void *)&buffer);
 	return (bytes_read);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*remains = NULL;
-	char		*buffer;
+	static char	*remains;
 	char		*line;
 	int			bytes_read;
 
 	bytes_read = 0;
-	buffer = malloc(BUFFER_SIZE + 1);
-	if (!buffer)
-		return (NULL);
 	if (!remains)
 		remains = ft_strdup("");
-	bytes_read = read_to_remains(&remains, buffer, fd);
+	bytes_read = read_to_remains(&remains, fd);
 	if (bytes_read < 0)
 		safe_free((void *)&remains);
 	line = extract_line(&remains);
 	if (!line && !remains)
-	{
-		safe_free((void *)&buffer);
 		return (NULL);
-	}
-	safe_free((void *)&buffer);
 	return (line);
 }
