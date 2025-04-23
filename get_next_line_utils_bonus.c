@@ -6,7 +6,7 @@
 /*   By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 14:55:35 by jyniemit          #+#    #+#             */
-/*   Updated: 2025/04/23 19:38:31 by jyniemit         ###   ########.fr       */
+/*   Updated: 2025/04/23 21:37:14 by jyniemit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*ft_strdup(const char *s)
 		return (NULL);
 	while (s[len])
 		len++;
-	dup = (char *)malloc(len + 1);
+	dup = (char *)malloc(sizeof(char) * len + 1);
 	if (!dup)
 		return (NULL);
 	len = 0;
@@ -97,7 +97,10 @@ char	*concat_buffer_to_remains(char *remains, char *buffer)
 		j++;
 	joined = (char *)malloc(sizeof(char) * (i + j + 1));
 	if (!joined)
+	{
+		free(remains);
 		return (NULL);
+	}
 	i = 0;
 	i = str_fill(joined, remains, i);
 	j = 0;
