@@ -6,7 +6,7 @@
 /*   By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 14:40:00 by jyniemit          #+#    #+#             */
-/*   Updated: 2025/04/23 19:38:20 by jyniemit         ###   ########.fr       */
+/*   Updated: 2025/04/23 22:06:06 by jyniemit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,10 @@ char	*get_next_line(int fd)
 	int			bytes_read;
 
 	if (BUFFER_SIZE <= 0 || fd < 0)
+	{
+		safe_free((void *)&remains);
 		return (NULL);
+	}
 	if (remains && ft_strchr(remains, '\n'))
 		return (extract_line(&remains));
 	bytes_read = read_to_remains(&remains, fd);
