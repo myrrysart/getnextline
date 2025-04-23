@@ -6,7 +6,7 @@
 /*   By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 14:55:35 by jyniemit          #+#    #+#             */
-/*   Updated: 2025/04/23 15:58:37 by jyniemit         ###   ########.fr       */
+/*   Updated: 2025/04/23 19:02:25 by jyniemit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 	if (!s)
 		return (NULL);
-	substr = malloc(len + 1);
+	substr = (char *)malloc(sizeof(char)* (len + 1));
 	if (!substr)
 		return (NULL);
 	i = 0;
@@ -95,7 +95,7 @@ char	*concat_buffer_to_remains(char *remains, char *buffer)
 		i++;
 	while (buffer && buffer[j])
 		j++;
-	joined = (char *)malloc(i + j + 1);
+	joined = (char *)malloc(sizeof(char) * (i + j + 1));
 	if (!joined)
 		return (NULL);
 	i = 0;

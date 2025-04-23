@@ -14,7 +14,7 @@
 
 static void	safe_free(void **ptr)
 {
-	if (!*ptr || !ptr)
+	if (!ptr || !*ptr)
 		return ;
 	free(*ptr);
 	*ptr = NULL;
