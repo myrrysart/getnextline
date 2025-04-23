@@ -6,7 +6,7 @@
 /*   By: jyniemit <jyniemit@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 14:55:35 by jyniemit          #+#    #+#             */
-/*   Updated: 2025/04/21 16:15:41 by jyniemit         ###   ########.fr       */
+/*   Updated: 2025/04/23 15:58:37 by jyniemit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static size_t	str_fill(char *dest, char *src, size_t start_i)
 	size_t	i;
 
 	i = 0;
-	while (src[i])
+	while (src && src[i])
 	{
 		dest[start_i + i] = src[i];
 		i++;
@@ -83,7 +83,7 @@ static size_t	str_fill(char *dest, char *src, size_t start_i)
 	return (i);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*concat_buffer_to_remains(char *remains, char *buffer)
 {
 	char	*joined;
 	size_t	i;
@@ -91,20 +91,19 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	i = 0;
 	j = 0;
-	if (!s1 || !s2)
-		return (NULL);
-	while (s1[i])
+	while (remains && remains[i])
 		i++;
-	while (s2[j])
+	while (buffer && buffer[j])
 		j++;
 	joined = (char *)malloc(i + j + 1);
 	if (!joined)
 		return (NULL);
 	i = 0;
-	i = str_fill(joined, s1, i);
+	i = str_fill(joined, remains, i);
 	j = 0;
-	j = str_fill(joined, s2, i);
+	j = str_fill(joined, buffer, i);
 	joined[i + j] = '\0';
-	free(s1);
+	if (remains)
+		free(remains);
 	return (joined);
 }
